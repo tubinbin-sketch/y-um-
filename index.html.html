@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Lời chúc từ lớp 12A10</title>
+    <style>
+        body {
+            background-color: #fceefb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 50px;
+            color: #4b2354;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #c71585;
+            margin-bottom: 30px;
+        }
+
+        .message {
+            background-color: #fff0f5;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #d8bfd8;
+            display: inline-block;
+            max-width: 700px;
+        }
+
+        #music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #c71585;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 0 8px #aaa;
+            z-index: 999;
+        }
+
+        .heart {
+            width: 20px;
+            height: 20px;
+            background: red;
+            position: absolute;
+            transform: rotate(45deg);
+            animation: float 6s linear infinite;
+            opacity: 0.7;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            width: 20px;
+            height: 20px;
+            background: red;
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: -10px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Tập thể lớp 12A10 kính gửi cô Hằng xinh gái 🍀🍀🍀</h1>
+    <div class="message">
+        <p>Chúng em xin gửi lời cảm ơn chân thành đến cô đã luôn tận tâm dạy dỗ và dẫn dắt chúng em trong suốt thời gian qua.</p>
+        <p>Chúng em kính chúc cô luôn <strong>vui vẻ</strong>, <strong>tràn đầy năng lượng tích cực</strong>, và tiếp tục cháy hết mình với sự nghiệp giáo dục tươi đẹp.</p>
+        <p>Mong rằng cô sẽ gặt hái được thật nhiều <strong>thành công</strong> và niềm vui trong cuộc sống!</p>
+        <p>Yêu cô nhiều ạ! 💖</p>
+    </div>
+
+    <audio id="bg-music" autoplay loop src="yêu mẹ.mp3" type="audio/mp3"></audio>
+    <button id="music-btn">Tắt nhạc</button>
+
+    <script>
+        const music = document.getElementById('bg-music');
+        const btn = document.getElementById('music-btn');
+
+        btn.addEventListener('click', () => {
+            if (music.paused) {
+                music.play();
+                btn.textContent = 'Tắt nhạc';
+            } else {
+                music.pause();
+                btn.textContent = 'Bật nhạc';
+            }
+        });
+
+        // Khởi động phát lại nếu bị chặn
+        document.addEventListener("click", () => {
+            if (music.paused) {
+                music.play().catch(() => {});
+            }
+        });
+
+        window.addEventListener("DOMContentLoaded", () => {
+            music.play().catch(() => {
+                console.log("Trình duyệt có thể đã chặn tự chạy âm thanh.");
+            });
+        });
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.bottom = "0";
+            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+
+        setInterval(createHeart, 500);
+    </script>
+</body>
+</html>
